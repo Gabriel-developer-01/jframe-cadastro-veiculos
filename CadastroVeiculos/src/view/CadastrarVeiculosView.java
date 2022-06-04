@@ -8,6 +8,7 @@ import java.text.ParseException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -21,9 +22,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import DTO.CarroDTO;
+import DTO.UsuarioDTO;
 import dao.CarroDAO;
+import dao.UsuarioDAO;
 import util.LimpaCampos;
-import javax.swing.ImageIcon;
 
 public class CadastrarVeiculosView extends JFrame implements ActionListener {
 
@@ -200,13 +202,15 @@ public class CadastrarVeiculosView extends JFrame implements ActionListener {
 	
 	protected void handle_btnInserir_actionPerformed(ActionEvent e) {
 		if(validarCampos()) {
-			CarroDTO veiculo = prepararVeiculos();
+			UsuarioDTO usuarioVeiculo = prepararUsuarioVeiculo();
 			
+			UsuarioDAO usuarioDao = new UsuarioDAO();
 			CarroDAO carroDao = new CarroDAO();
 			
 			int confirm = JOptionPane.showConfirmDialog(null, "Deseja cadastrar seu veículo?");
 			if(confirm == JOptionPane.YES_OPTION) {
-				carroDao.insertVeiculo(veiculo);
+				usuarioDao.insertUsuario(usuarioVeiculo);
+				carroDao.insertVeiculo(usuarioVeiculo);
 				JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
 				LimpaCampos.LimpaTela(getContentPane());
 			}
@@ -215,22 +219,23 @@ public class CadastrarVeiculosView extends JFrame implements ActionListener {
 	
 	protected void handle_btnConsultar_actionPerformed(ActionEvent e) {
 		
-		CarroDAO carroDao = new CarroDAO();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		
 		String placa = textConsultarPlaca.getText();
 		
-		CarroDTO veiculoSelecionado = carroDao.findByPlaca(placa);
+		UsuarioDTO usuarioVeiculoSelecionado = usuarioDao.findByPlaca(placa);
 		
-		if(placa.equals(veiculoSelecionado.getPlaca())) {
-			carregarDadosFormulario(veiculoSelecionado);
+		if(placa.equals(usuarioVeiculoSelecionado.getCarro().getPlaca())) {
+			carregarDadosFormulario(usuarioVeiculoSelecionado);
 		}
 	}
 
-	private void carregarDadosFormulario(CarroDTO veiculoSelecionado) {
-		textNomeCliente.setText(veiculoSelecionado.getNome());
-		textModelo.setText(veiculoSelecionado.getModelo());
-		textMarca.setText(veiculoSelecionado.getMarca());
-		textPlaca.setText(veiculoSelecionado.getPlaca());
-		formattedTextTelefone.setText(veiculoSelecionado.getTelefone());
+	private void carregarDadosFormulario(UsuarioDTO usuarioVeiculoSelecionado) {
+		textNomeCliente.setText(usuarioVeiculoSelecionado.getNome());
+		textModelo.setText(usuarioVeiculoSelecionado.getCarro().getModelo());
+		textMarca.setText(usuarioVeiculoSelecionado.getCarro().getMarca());
+		textPlaca.setText(usuarioVeiculoSelecionado.getCarro().getPlaca());
+		formattedTextTelefone.setText(usuarioVeiculoSelecionado.getTelefone());
 	}
 	
 	private boolean validarCampos() {
@@ -249,13 +254,14 @@ public class CadastrarVeiculosView extends JFrame implements ActionListener {
 		return false;
 	}
 	
-	private CarroDTO prepararVeiculos() {
-		CarroDTO veiculo = new CarroDTO();
-		veiculo.setNome(textNomeCliente.getText());
-		veiculo.setModelo(textModelo.getText());
-		veiculo.setMarca(textMarca.getText());
-		veiculo.setPlaca(textPlaca.getText());
-		veiculo.setTelefone(formattedTextTelefone.getText());	
-		return veiculo;
+	private UsuarioDTO prepararUsuarioVeiculo() {
+		UsuarioDTO usuario = new UsuarioDTO();
+		CarroDTO veiculo = new CarroDTO(textModelo.getText(), textMarca.getText(), textPlaca.getText());
+		
+		usuario.setNome(textNomeCliente.getText());
+		usuario.setTelefone(formattedTextTelefone.getText());
+		usuario.setCarro(veiculo);
+		
+		return usuario;
 	}
 }

@@ -3,13 +3,17 @@ package DTO;
 public class CarroDTO {
 	
 	private Integer id;
-	private String nome;
 	private String modelo;
 	private String marca;
 	private String placa;
-	private String telefone;
 	
 	public CarroDTO() {}
+	
+	public CarroDTO(String modelo, String marca, String placa) {
+		this.modelo = modelo;
+		this.marca = marca;
+		this.placa = placa;
+	}
 
 	public Integer getId() {
 		return id;
@@ -17,14 +21,6 @@ public class CarroDTO {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getModelo() {
@@ -49,13 +45,5 @@ public class CarroDTO {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 }
