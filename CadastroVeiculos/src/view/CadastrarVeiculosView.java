@@ -23,6 +23,7 @@ import javax.swing.text.MaskFormatter;
 import DTO.CarroDTO;
 import dao.CarroDAO;
 import util.LimpaCampos;
+import javax.swing.ImageIcon;
 
 public class CadastrarVeiculosView extends JFrame implements ActionListener {
 
@@ -95,6 +96,7 @@ public class CadastrarVeiculosView extends JFrame implements ActionListener {
 		formataCampos();
 		
 		btnInserir = new JButton("Inserir");
+		btnInserir.setIcon(new ImageIcon(CadastrarVeiculosView.class.getResource("/icones/add-icon.png")));
 		btnInserir.addActionListener(this);
 		btnInserir.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
@@ -105,6 +107,7 @@ public class CadastrarVeiculosView extends JFrame implements ActionListener {
 		lblConsultarPlaca.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		btnConsultar = new JButton("Consultar");
+		btnConsultar.setIcon(new ImageIcon(CadastrarVeiculosView.class.getResource("/icones/Search-icon.png")));
 		btnConsultar.addActionListener(this);
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
