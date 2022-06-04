@@ -4,7 +4,22 @@
   - 🌍 [Requisições](#requisicoes)
   - ⚓ [Configuração](#config)
     
+<h2 id="tecnologias">Apresentação</h2>
+ Consultar:
+<p align="center">
+  <img width="600" src="media/consultar-gif.gif">
+</p>
 
+ Inclusão:
+<p align="center">
+  <img width="600" src="media/incluir-gif.gif">
+</p>
+
+<h2 id="aFazer">A fazer: </h2>
+
+- [] Refatoração de código
+- [] validações
+- [] Melhoramento do layout
 
 <h2 id="tecnologias">🤖 Tecnologias/Ferrramentas</h2>
 
