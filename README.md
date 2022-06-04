@@ -15,6 +15,11 @@
   <img width="600" src="media/incluir-gif.gif">
 </p>
 
+<h2 id="aFazer">A fazer: </h2>
+
+- [x] Refatoração de código
+- [x] validações
+- [x] Melhoramento do layout
 
 <h2 id="tecnologias">🤖 Tecnologias/Ferrramentas</h2>
 
