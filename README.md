@@ -17,8 +17,8 @@
 
 <h2 id="aFazer">A fazer: </h2>
 
-- [] Refatoração de código
-- [] validações
+- [X] Refatoração de código
+- [X] validações
 - [] Melhoramento do layout
 
 <h2 id="tecnologias">🤖 Tecnologias/Ferrramentas</h2>
